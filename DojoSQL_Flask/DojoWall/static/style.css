@@ -1,0 +1,49 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+h1{
+    display: inline-block;
+    width: 333px;
+    text-align: center;
+    padding: 10px;
+    color: greenyellow
+}
+h2{
+    display: inline-block;
+    width: 333px;
+    padding: 10px;
+    text-align: center;
+}
+h3{
+    display: inline-block;
+    width: 333px;
+    padding: 5px 0px;
+}
+.wrapper{
+    width: 900px;
+    height: 700px;
+    margin: 10px;
+    padding: 10px;
+    background: rgb(82, 63, 63);
+
+}
+.form{
+    width: 800px;
+    height: 400px;
+    margin: 10px;
+    padding: 10px;
+    background: whitesmoke;
+}
+.header{
+    width: 800px;
+    height: 200px;
+    margin: 10px;
+    padding: 10px;
+    display: inline-block;
+    background: rgb(161, 129, 129);
+}
+.error{
+    color: red;
+}
+

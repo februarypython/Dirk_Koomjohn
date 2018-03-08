@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friends</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+  </head>
+    
+  <body>
+    <div class="wrapper">
+        <h2 class="valid">The email address you entered ({{email}}) is a VALID email address! Thank you for your submission.</h2>
+        <div class="results">
+            <h3>Email Addresses Entered:</h3>
+                {% for email in emailstolist %}
+                    <p>{{email['email_address']}}</p><p>{{email['date']}}</p>
+                {% endfor %}
+        </div>
+    </div>
+  </body>
+</html>
