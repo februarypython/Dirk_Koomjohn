@@ -1,0 +1,25 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+h1{
+    font-size: 215%;
+    padding: 35px;
+    width: 400px;
+    margin: 20px auto;
+}
+h3{
+    color: red;
+}
+wrapper {
+    width: 300px;
+    text-align: center;
+    border: solid 3px black;
+    border-radius: 3px;
+    margin: auto;
+    padding: 10px;
+}
+input {
+    padding: 2px;
+    margin: 5px;
+}

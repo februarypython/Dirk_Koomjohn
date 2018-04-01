@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Login and Register - django </title>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="ml-3">REGISTRATION</h2>
+
+        {% if error_list %}
+            <div id="errors">
+                <ul>
+                    {% for error in error_list %}
+                        <li class="text-danger">{{ error }} {{ error }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form action="/register" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" placeholder="Email">
+                <label for="desc">Password</label>
+                <input type="text" class="form-control" name="password" placeholder="Password">
+                <label for="desc">Confirm Password</label>
+                <input type="text" class="form-control" name="pw_confirm" placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-success">REGISTER</button>
+        </form>
+
+        <h2 class="ml-3">LOGIN</h2>
+        <form action="/login" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" placeholder="Email">
+                <label for="desc">Password</label>
+                <input type="text" class="form-control" name="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-success">LOGIN</button>
+        </form>
+ 
+</body>
+</html>

@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Courses Assignment</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="ml-3">Are you sure you would like to delete the following course?</h2>
+
+        {% if messages %}
+            <div id="errors">
+                <ul>
+                    {% for message in messages %}
+                        <li class="text-danger">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <h2 class="ml-3">Courses</h2>
+
+	<table class="ml-3 table table-striped">
+
+            <tbody>
+              <tr>                        
+                <td scope="col">Name</th>
+		<td>{{ the_course.name }}</td>
+              </tr>
+    
+              <tr>
+                <td scope="col">Description</th>
+                <td>{{ the_course.desc_text }}</td>
+              </tr>
+
+            </tbody>
+            <form action="/" method="get">
+                <input type="submit" value="No">
+            </form>
+            <form action="/erase/{{the_course.id}}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Yes! I want to delete this" id="red">
+            </form>
+          
+	</table>
+    </div>
+  
+</body>
+</html>

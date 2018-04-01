@@ -1,0 +1,26 @@
+{
+    margin: 0px;
+    padding: 0px;
+}
+.wrapper {
+    width: 400px;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 5px;
+}
+h4 {
+    background-color: green;
+    color: white;
+    padding: 5px;
+}
+input, select, textarea {
+    margin: 3px;
+}
+#name {
+    margin-left: 64px;
+    width: 229px;
+}
+.bold {
+    font-weight: bold;
+}

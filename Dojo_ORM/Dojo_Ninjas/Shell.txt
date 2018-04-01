@@ -1,0 +1,121 @@
+
+(DJANGO~1) C:\Users\Preferred User\Dojo_ORM\Dojo_Ninjas>python manage.py shell
+Python 2.7.13 (v2.7.13:a06454b1afa1, Dec 17 2016, 20:42:59) [MSC v.1500 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.DN_app.models import *
+>>> Dojo.objects.create(name = "Dojo West", city = "San Fransicso", state = "CA")
+<Dojo: Dojo object>
+>>> d.values
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Dojo' object has no attribute 'values'
+>>> Dojo.objects.create(name = "Dojo Central", city = "Chicago", state = "IL")
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name = "Dojo East", city = "New York", state = "NY")
+<Dojo: Dojo object>
+>>> d.name
+u''
+>>> d.state
+'CA'
+>>> a = Dojo.objects.all()
+>>> a.values
+<bound method QuerySet.values of <QuerySet [<Dojo: Dojo object>, <Dojo: Dojo object>, <Dojo: Dojo object>]>>
+>>> Dojo.objects.count()
+3
+>>> a.delete()
+(3, {u'DN_app.Ninja': 0, u'DN_app.Dojo': 3})
+>>> Dojo.objects.count()
+0
+>>> Dojo.objects.create(name = "CodingDojo Silicon Valley", city = "Mountain View", state = "IL")
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name = "CodingDojo Seattle", city = "Seattle", state = "WA")
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name = "CodingDojo New York", city = "New York", state = "NY")
+<Dojo: Dojo object>
+(DJANGO~1) C:\Users\Preferred User\Dojo_ORM\Dojo_Ninjas>python manage.py makemigrations
++++++++++++ views +++++++++++++++
+Migrations for 'DN_app':
+  apps\DN_app\migrations\0002_auto_20180320_2010.py
+    - Add field desc to dojo
+    - Alter field dojo on ninja
+
+(DJANGO~1) C:\Users\Preferred User\Dojo_ORM\Dojo_Ninjas>python manage.py migrate
++++++++++++ views +++++++++++++++
+Operations to perform:
+  Apply all migrations: DN_app, auth, contenttypes, sessions
+Running migrations:
+  Applying DN_app.0002_auto_20180320_2010... OK
+
+(DJANGO~1) C:\Users\Preferred User\Dojo_ORM\Dojo_Ninjas>python manage.py shell
+Python 2.7.13 (v2.7.13:a06454b1afa1, Dec 17 2016, 20:42:59) [MSC v.1500 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> Dojo.objects.all()
+<QuerySet [<Dojo: CodingDojo Silicon Valley Mountain View IL None>, <Dojo: CodingDojo Seattle Seattle WA None>, <Dojo: CodingDojo New York New York NY None>]>
+>>> Dojo.objects.all().values()
+<QuerySet [{'city': u'Mountain View', 'state': u'IL', 'desc': None, u'id': 4, 'name': u'CodingDojo Silicon Valley'}, {'city': u'Seattle', 'state': u'WA', 'desc': None, u'id': 5, 'name': u'CodingDojo Seattle'}, {'city': u'New York', 'state': u'NY', 'desc': None, u'id': 6, 'name': u'CodingDojo New York'}]>
+>>> Dojo.objects.first()
+<Dojo: CodingDojo Silicon Valley Mountain View IL None>
+>>> Dojo(desc = 'sdlkjflsdj')
+<Dojo:    sdlkjflsdj>
+>>> Dojo.objects.all()
+<QuerySet [<Dojo: CodingDojo Silicon Valley Mountain View IL None>, <Dojo: CodingDojo Seattle Seattle WA None>, <Dojo: CodingDojo New York New York NY None>]>
+>>> a = Dojo.objects.first()
+>>> a
+<Dojo: CodingDojo Silicon Valley Mountain View IL None>
+>>> a.desc = 'sldkjflsdkfj'
+>>> a.save()
+<Dojo: CodingDojo Silicon Valley Mountain View IL sldkjflsdkfj>
+>>> a.state = 'CA'
+>>> a.save()
+>>> b =  Dojo.objects.get(state = 'WA')
+>>> b.desc = 'djfljklsdf'
+>>> b.save()
+>>> Dojo.objects.all()
+<QuerySet [<Dojo: CodingDojo Silicon Valley Mountain View IL sldkjflsdkfj>, <Dojo: CodingDojo Seattle Seattle WA djfljklsdf>, <Dojo: CodingDojo New York New York NY None>]>
+>>> c = Dojo.objects.last()
+>>> c.desc = "sdfjklsdfjkldfsjkl"
+>>> c.save()
+>>> Dojo.objects.all()
+<QuerySet [<Dojo: CodingDojo Silicon Valley Mountain View IL sldkjflsdkfj>, <Dojo: CodingDojo Seattle Seattle WA djfljklsdf>, <Dojo: CodingDojo New York New York NY sdfjklsdfjkldfsjkl>]>
+>>> Dojo.objects.first()
+<Dojo: CodingDojo Silicon Valley Mountain View CA sldkjflsdkfj>
+>>> s
+<Dojo: CodingDojo Silicon Valley Mountain View CA sldkjflsdkfj>
+>>> Ninja.objects.create(first_name = 'Al', last_name = 'BB', dojo = s)
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name = 'Ben', last_name = 'Dover', dojo = s)
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name = 'Cal', last_name = 'Clover', dojo = s)
+<Ninja: Ninja object>
+>>> d = Dojo.objects.get(state = 'WA')
+>>> d
+<Dojo: CodingDojo Seattle Seattle WA djfljklsdf>
+>>> Ninja.objects.create(first_name = 'Dan', last_name = 'Dewers', dojo = d)
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name = 'Ed', last_name = 'Edison', dojo = d)
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name = 'Fred', last_name = 'Farmer', dojo = d)
+<Ninja: Ninja object>
+>>> x = Dojo.objects.last()
+>>> x
+<Dojo: CodingDojo New York New York NY sdfjklsdfjkldfsjkl>
+>>> Ninja.objects.create(first_name = 'Gary', last_name = 'Gentry', dojo =x)
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name = 'Harry', last_name = 'Henderson', dojo = x)
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name = 'Iggy', last_name = 'Pop', dojo = x)
+>>> x = Dojo.objects.first()
+>>> x.Ninjas.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Dojo' object has no attribute 'Ninjas'
+>>> x
+<Dojo: CodingDojo Silicon Valley Mountain View CA sldkjflsdkfj>
+>>> n = Ninja.objects.filter(dojo=x)
+>>> n
+<QuerySet [<Ninja: Ninja object>, <Ninja: Ninja object>, <Ninja: Ninja object>]>
+>>> z = Ninja.objects.filter(dojo=Dojo.objects.last())
+>>> z
+<QuerySet [<Ninja: Ninja object>, <Ninja: Ninja object>, <Ninja: Ninja object>]>
